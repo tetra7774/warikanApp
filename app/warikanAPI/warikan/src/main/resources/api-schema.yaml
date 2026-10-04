@@ -1,0 +1,373 @@
+openapi: "3.0.0"
+info:
+  title: Warikan API
+  version: 0.8.0
+tags:
+  - name: recipt
+    description: receiptのCRUD操作
+paths:
+  /receipt:
+    post:
+      tags:
+        - recipt
+      summary: レシート登録
+      description: レシートを登録します。
+      operationId: createReceipt
+      requestBody:
+        required: true
+        description: レシートの情報を含むリクエストボディ
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/receiptForm"
+      responses:
+        "201":
+          description: "Created"
+          headers:
+            Location:
+              description: 生成したレシートのURL
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/receiptDTO"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadRequestError"
+        "500":
+          description: "Internal Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SystemduplicatedIdError"
+
+    get:
+      tags:
+        - recipt
+      parameters:
+        - name: page
+          in: query
+          description: pege数
+          required: true
+          schema:
+            type: integer
+            format: int32
+            maximum: 999
+            minimum: 0
+            default: 0
+        - name: size
+          in: query
+          description: pageサイズ
+          required: true
+          schema:
+            type: integer
+            format: int32
+            maximum: 999
+            minimum: 1
+            default: 10
+      summary: レシートの一覧取得
+      description: 登録されているレシートの一覧を取得します。
+      operationId: getReceiptList
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/receiptListDTO"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadRequestError"
+
+  /receipt/{id}:
+    get:
+      tags:
+        - recipt
+      summary: 指定したIDのレシート取得
+      description: 指定したIDのレシートを取得します。
+      operationId: getReceiptById
+      parameters:
+        - name: id
+          in: path
+          description: レシートのID
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/receiptDTO"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResouceNotFoundError"
+    put:
+      tags:
+        - recipt
+      summary: 指定したIDのレシート更新
+      description: 指定したIDのレシートを更新します。
+      operationId: editReceiptById
+      parameters:
+        - name: id
+          in: path
+          description: レシートのID
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        description: レシートの情報を含むリクエストボディ
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/receiptForm"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/receiptDTO"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadRequestError"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResouceNotFoundError"
+    delete:
+      tags:
+        - recipt
+      summary: レシート削除
+      description: 指定したIDのレシートを削除します。
+      operationId: deleteReceiptById
+      parameters:
+        - name: id
+          in: path
+          description: レシートのID
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "204":
+          description: "No Content"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResouceNotFoundError"
+
+components:
+  schemas:
+    receiptForm:
+      description: レシートのForm
+      type: object
+      properties:
+        totalAmount:
+          type: integer
+          format: int32
+          description: レシートの合計金額
+          minimum: 0
+        imageUrl:
+          type: string
+          description: レシートの画像URL
+        createdBy:
+          type: string
+          description: レシートを登録したユーザーのID
+        isUpdated:
+          type: boolean
+          description: レシートが更新されたかどうかのフラグ
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/receiptItemDTO"
+      required:
+        - totalAmount
+        - imageUrl
+        - createdBy
+        - isUpdated
+
+    receiptDTO:
+      description: レシートDTO
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: レシートのID
+        register_date:
+          type: string
+          format: date
+          description: レシートの登録日
+        totalAmount:
+          type: integer
+          format: int32
+          description: レシートの合計金額
+        imageUrl:
+          type: string
+          description: レシートの画像URL
+        createdBy:
+          type: string
+          description: レシートを登録したユーザーのID
+        isUpdated:
+          type: boolean
+          description: レシートが更新されたかどうかのフラグ
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/receiptItemDTO"
+      required:
+        - id
+        - register_date
+        - totalAmount
+        - imageUrl
+        - createdBy
+        - isUpdated
+
+    receiptListDTO:
+      description: レシートの一覧DTO
+      type: object
+      properties:
+        page:
+          $ref: "#/components/schemas/pageDTO"
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/receiptDTO"
+      required:
+        - page
+        - results
+
+    pageDTO:
+      description: ページ情報DTO
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: 指定されたオフセット値
+        size:
+          type: integer
+          format: int32
+          description: 指定されたリクエストあたりで取得するレシート数
+        retrievedPage:
+          type: integer
+          format: int32
+          description: 取得されたレシート数
+      required:
+        - page
+        - size
+        - retrievedPage
+
+    receiptItemDTO:
+      description: レシートアイテムDTO
+      type: object
+      properties:
+        name:
+          type: string
+          description: アイテムの名前
+        price:
+          type: integer
+          format: int32
+          description: アイテムの価格
+          minimum: 0
+        quantity:
+          type: integer
+          format: int32
+          description: アイテムの数量
+          minimum: 0
+          maximum: 100
+        isReducedTax:
+          type: boolean
+          description: アイテムが軽減税率対象かどうかのフラグ
+      required:
+        - name
+        - price
+        - quantity
+        - isReducedTax
+
+    ResouceNotFoundError:
+      description: 指定したidのレシートが見つからない
+      type: object
+      properties:
+        title:
+          type: string
+          description: エラータイトル
+          default: "Not Found"
+        detail:
+          type: string
+          description: エラー詳細
+      required:
+        - title
+        - detail
+
+    SystemduplicatedIdError:
+      description: システム内部でIDの生成に失敗しました
+      type: object
+      properties:
+        title:
+          type: string
+          description: エラータイトル
+        detail:
+          type: string
+          description: エラー詳細
+      required:
+        - title
+        - detail
+
+    BadRequestError:
+      description: リクエストが不正
+      type: object
+      properties:
+        title:
+          type: string
+          description: エラータイトル
+          default: "Bad Request"
+        detail:
+          type: string
+          description: エラー詳細
+          default: "リクエストが不正です。正しいパラメータを指定してください。"
+        invalid-params:
+          type: array
+          items:
+            $ref: "#/components/schemas/InvalidParam"
+          description: 不正なパラメータ名
+      required:
+        - title
+        - detail
+        - invalid-params
+
+    InvalidParam:
+      description: 不正なリクエストについての詳細
+      type: object
+      properties:
+        name:
+          type: string
+          description: エラーが発生したフィールド名
+        reason:
+          type: string
+          description: 不正な理由
+      required:
+        - name
+        - reason

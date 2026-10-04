@@ -1,0 +1,7 @@
+version: 3
+agent:
+  authtoken: "2sc4tROSUvPevuXwdZ2jRQh63fH_7bp3aUHNmo7RQEVhvw4YU"
+tunnels:
+  basic:
+    proto: http
+    addr: host.docker.internal:3000

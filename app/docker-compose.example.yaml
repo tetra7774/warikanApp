@@ -1,0 +1,59 @@
+services:
+  ui:
+    build:
+      context: ./warikanUI
+      dockerfile: DockerFile.dev
+    volumes:
+      - ./warikanUI/next:/warikan:cached
+    ports:
+      - 3000:3000
+    environment:
+      LINE_CHANNEL_ID: xxx # Please replace with your actual LINE_CHANNEL_ID(User-defined variable)
+      LINE_CHANNEL_SECRET: xxx # Please replace with your actual LINE_CHANNEL_SECRET(User-defined variable)
+      NEXTAUTH_SECRET: xxx # Please replace with your actual NEXTAUTH_SECRET(Next.js-defined variable)
+      NEXTAUTH_URL: xxx # Please replace with your actual NEXTAUTH_URL(Next.js-defined variable)
+      NEXT_PUBLIC_SPECIFIEDLINEUSER1: xxx # Please replace with your actual NEXT_PUBLIC_SPECIFIEDLINEUSER1(User-defined variable)
+      NEXT_PUBLIC_SPECIFIEDLINEUSER1_NAME: xxx # Please replace with your actual NEXT_PUBLIC_SPECIFIEDLINEUSER1_NAME(User-defined variable)
+      NEXT_PUBLIC_SPECIFIEDLINEUSER2: xxx # Please replace with your actual NEXT_PUBLIC_SPECIFIEDLINEUSER2(User-defined variable)
+      NEXT_PUBLIC_SPECIFIEDLINEUSER2_NAME: xxx # Please replace with your actual NEXT_PUBLIC_SPECIFIEDLINEUSER2_NAME(User-defined variable)
+      GOOGLEGENAI_API_KEY: xxx # Please replace with your actual GOOGLEGENAI_API_KEY(User-defined variable)
+      GOOGLE_APPLICATION_CREDENTIALS: xxx # Please replace with your actual GOOGLE_APPLICATION_CREDENTIALS(gcp-defined variable)
+      APIENDPOINT: xxx # Please replace with your actual APIENDPOINT(User-defined variable)
+    depends_on:
+      - api
+
+  # ngrok:
+  #   image: ngrok/ngrok:3.22.0-alpine-6b1a631
+  #   restart: unless-stopped
+  #   command:
+  #     - "start"
+  #     - "--all"
+  #     - "--config"
+  #     - "/etc/ngrok.yml"
+  #   volumes:
+  #     - ./ngrok.yml:/etc/ngrok.yml
+  #   ports:
+  #     - 4040:4040
+  #   depends_on:
+  #     - ui
+
+  api:
+    build:
+      context: ./warikanAPI
+      dockerfile: DockerFile.dev
+    volumes:
+      - ./warikanAPI/warikan:/warikan
+    ports:
+      - 8080:8080
+    environment:
+      MONGO_URI: mongodb://root:Passw0rd@db:27017/db_recipts?authSource=admin
+    depends_on:
+      - db
+
+  db:
+    build: ./mongoDB
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Passw0rd

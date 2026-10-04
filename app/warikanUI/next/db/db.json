@@ -1,0 +1,290 @@
+{
+  "receipt": [
+    {
+      "id": 1,
+      "register_date": "2026-05-01",
+      "item": [
+        {
+          "name": "りんご",
+          "price": 200,
+          "quantity": 3,
+          "reducedTax": true
+        },
+        {
+          "name": "牛乳",
+          "price": 180,
+          "quantity": 2,
+          "reducedTax": true
+        }
+      ],
+      "totalAmount": 380,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "U0f136ca320c760a273a3d1e21d5365a2",
+      "isUpdated": false
+    },
+    {
+      "id": 2,
+      "register_date": "2026-05-02",
+      "item": [
+        {
+          "name": "パン",
+          "price": 120,
+          "quantity": 2,
+          "reducedTax": true
+        },
+        {
+          "name": "卵",
+          "price": 200,
+          "quantity": 1,
+          "reducedTax": true
+        },
+        {
+          "name": "バナナ",
+          "price": 290,
+          "quantity": 2,
+          "reducedTax": true
+        }
+      ],
+      "totalAmount": 1020,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "U0f136ca320c760a273a3d1e21d5365a2",
+      "isUpdated": false
+    },
+    {
+      "id": 3,
+      "register_date": "2026-05-03",
+      "item": [
+        {
+          "name": "コーヒー",
+          "price": 380,
+          "quantity": 2,
+          "reducedTax": false
+        }
+      ],
+      "totalAmount": 760,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "U0f136ca320c760a273a3d1e21d5365a2",
+      "isUpdated": false
+    },
+    {
+      "id": 4,
+      "register_date": "2026-05-04",
+      "item": [
+        {
+          "name": "お米",
+          "price": 1460,
+          "quantity": 1,
+          "reducedTax": true
+        }
+      ],
+      "totalAmount": 1460,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "U0f136ca320c760a273a3d1e21d5365a2",
+      "isUpdated": false
+    },
+    {
+      "id": 5,
+      "register_date": "2026-05-05",
+      "item": [
+        {
+          "name": "チョコレート",
+          "price": 130,
+          "quantity": 3,
+          "reducedTax": false
+        },
+        {
+          "name": "ジュース",
+          "price": 220,
+          "quantity": 1,
+          "reducedTax": false
+        },
+        {
+          "name": "ポテトチップス",
+          "price": 170,
+          "quantity": 1,
+          "reducedTax": false
+        }
+      ],
+      "totalAmount": 830,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "U0f136ca320c760a273a3d1e21d5365a2",
+      "isUpdated": false
+    },
+    {
+      "id": 6,
+      "register_date": "2026-05-06",
+      "item": [
+        {
+          "name": "コーラ",
+          "price": 150,
+          "quantity": 2,
+          "reducedTax": false
+        },
+        {
+          "name": "ポテト",
+          "price": 220,
+          "quantity": 1,
+          "reducedTax": false
+        }
+      ],
+      "totalAmount": 520,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "Ud8997d0d12b1e625a2bf1bafdfc6d5e0",
+      "isUpdated": false
+    },
+    {
+      "id": 7,
+      "register_date": "2026-05-07",
+      "item": [
+        {
+          "name": "パン",
+          "price": 180,
+          "quantity": 2,
+          "reducedTax": true
+        },
+        {
+          "name": "牛乳",
+          "price": 200,
+          "quantity": 1,
+          "reducedTax": true
+        }
+      ],
+      "totalAmount": 560,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "U0f136ca320c760a273a3d1e21d5365a2",
+      "isUpdated": false
+    },
+    {
+      "id": 8,
+      "register_date": "2026-05-08",
+      "item": [
+        {
+          "name": "おにぎり",
+          "price": 120,
+          "quantity": 3,
+          "reducedTax": true
+        },
+        {
+          "name": "お茶",
+          "price": 130,
+          "quantity": 1,
+          "reducedTax": true
+        }
+      ],
+      "totalAmount": 490,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "Ud8997d0d12b1e625a2bf1bafdfc6d5e0",
+      "isUpdated": false
+    },
+    {
+      "id": 9,
+      "register_date": "2026-05-09",
+      "item": [
+        {
+          "name": "お弁当",
+          "price": 680,
+          "quantity": 1,
+          "reducedTax": true
+        },
+        {
+          "name": "ジュース",
+          "price": 160,
+          "quantity": 1,
+          "reducedTax": false
+        }
+      ],
+      "totalAmount": 840,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "U0f136ca320c760a273a3d1e21d5365a2",
+      "isUpdated": false
+    },
+    {
+      "id": 10,
+      "register_date": "2026-05-10",
+      "item": [
+        {
+          "name": "アイス",
+          "price": 250,
+          "quantity": 2,
+          "reducedTax": false
+        },
+        {
+          "name": "クッキー",
+          "price": 320,
+          "quantity": 1,
+          "reducedTax": false
+        }
+      ],
+      "totalAmount": 820,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "Ud8997d0d12b1e625a2bf1bafdfc6d5e0",
+      "isUpdated": false
+    },
+    {
+      "id": 11,
+      "register_date": "2026-04-20",
+      "item": [
+        {
+          "name": "サラダ",
+          "price": 320,
+          "quantity": 1,
+          "reducedTax": true
+        },
+        {
+          "name": "パン",
+          "price": 180,
+          "quantity": 1,
+          "reducedTax": true
+        }
+      ],
+      "totalAmount": 500,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "Ud8997d0d12b1e625a2bf1bafdfc6d5e0",
+      "isUpdated": false
+    },
+    {
+      "id": 12,
+      "register_date": "2026-04-22",
+      "item": [
+        {
+          "name": "お弁当",
+          "price": 750,
+          "quantity": 1,
+          "reducedTax": true
+        },
+        {
+          "name": "お茶",
+          "price": 130,
+          "quantity": 1,
+          "reducedTax": true
+        }
+      ],
+      "totalAmount": 880,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "U0f136ca320c760a273a3d1e21d5365a2",
+      "isUpdated": false
+    },
+    {
+      "id": 13,
+      "register_date": "2026-04-25",
+      "item": [
+        {
+          "name": "コーヒー",
+          "price": 380,
+          "quantity": 1,
+          "reducedTax": false
+        },
+        {
+          "name": "クロワッサン",
+          "price": 260,
+          "quantity": 1,
+          "reducedTax": true
+        }
+      ],
+      "totalAmount": 640,
+      "imageUrl": "https://picsum.photos/200/300",
+      "createdBy": "Ud8997d0d12b1e625a2bf1bafdfc6d5e0",
+      "isUpdated": false
+    }
+  ]
+}

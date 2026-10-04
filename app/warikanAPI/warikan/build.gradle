@@ -1,0 +1,69 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.7'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id "org.openapi.generator" version "7.14.0"
+}
+
+
+group = 'warikan03'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'io.swagger.core.v3:swagger-annotations:2.2.8'
+	implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+	implementation 'org.projectlombok:lombok'
+	implementation 'com.oracle.oci.sdk:oci-java-sdk-secrets:3.80.3'  // choose latest version from Maven Central
+	implementation 'com.oracle.oci.sdk:oci-java-sdk-common-httpclient-jersey3:3.80.3'  // choose latest version from Maven Central
+	implementation 'com.oracle.oci.sdk:oci-java-sdk-vault:3.80.3'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+task buildSpringServer(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
+    generatorName.set("spring")
+    inputSpec.set("$rootDir/src/main/resources/api-schema.yaml")
+    outputDir.set("$buildDir/spring/")
+    apiPackage.set("org.openapitools.example.api.controller")
+    modelPackage.set("org.openapitools.example.api.controller")
+    configOptions.set([
+            interfaceOnly: "true" ,
+			useSpringBoot3: "true"
+    ])
+   
+}
+
+openApiValidate {
+	inputSpec = "$rootDir/src/main/resources/api-schema.yaml"
+}
+
+compileJava.dependsOn tasks.buildSpringServer
+sourceSets.main.java.srcDir "$buildDir/spring/src/main/java"

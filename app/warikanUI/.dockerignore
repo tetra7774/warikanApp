@@ -1,0 +1,23 @@
+# .dockerignore
+
+# 依存関係（コンテナ内でインストールする）
+./next/node_modules
+
+# バージョン管理
+.git
+.gitignore
+
+# 開発用ファイル
+*.log
+*.md
+.env
+.env.*
+
+# エディタ・OS固有
+.DS_Store
+.vscode
+.idea
+
+# テスト・ビルド成果物
+coverage
+dist

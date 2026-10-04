@@ -1,0 +1,14 @@
+{
+    "name": "warikan_UI",
+    "dockerComposeFile": "../docker/docker-compose.yaml",
+    "service": "next",
+    "workspaceFolder": "/home",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "formulahendry.auto-rename-tag",
+                "esbenp.prettier-vscode"
+            ]
+        }
+    }
+}

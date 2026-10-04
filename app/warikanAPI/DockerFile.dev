@@ -1,0 +1,14 @@
+FROM bellsoft/liberica-openjdk-debian:21
+
+WORKDIR /app
+
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -LO https://downloads.mongodb.com/compass/mongosh-2.9.2-linux-arm64.tgz && \
+    tar -xzf mongosh-2.9.2-linux-arm64.tgz && \
+    cp mongosh-2.9.2-linux-arm64/bin/mongosh /usr/local/bin/ && \
+    cp mongosh-2.9.2-linux-arm64/bin/mongosh_crypt_v1.so /usr/local/lib/ && \
+    rm -rf mongosh-2.9.2-linux-arm64*
+
+
+ENTRYPOINT ["/bin/sh", "-c", "while :; do sleep 10; done"]

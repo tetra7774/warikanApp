@@ -1,0 +1,10 @@
+spring:
+  config:
+    debug: true # プロパティソースの表示を有効化
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+  # https://runebook.dev/ja/articles/spring_boot/application-properties/application-properties.json.spring.jackson.default-property-inclusion
+  jackson:
+    default-property-inclusion: non_null
